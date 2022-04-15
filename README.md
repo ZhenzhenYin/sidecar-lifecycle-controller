@@ -11,13 +11,20 @@ This is a response to https://github.com/kubernetes/kubernetes/issues/25908.
 
 ## Usage
 
-1. Deploy the controller into your cluster
+1. Build image and push to a docker hub (skippable if no code change needed)
+
+```sh
+docker build -f Dockerfile -t $YOUR_REPO/sidecar-lifecycle-controller:$YOUR_TAG .
+docker push $YOUR_REPO/sidecar-lifecycle-controller:$YOUR_TAG
+```
+
+2. Deploy the controller into your cluster
 
 ```sh
 ./devops/sidecar-lifecycle-controller-deploy.sh 0.0.1 kube-system your-image-repo
 ```
 
-2. Add the `sidecar-lifecycle-controller/sidecars` annotation to your pods, with a comma-seperated list of sidecar container names.
+3. Add the `sidecar-lifecycle-controller/sidecars` annotation to your pods, with a comma-seperated list of sidecar container names.
 
 Example:
 
