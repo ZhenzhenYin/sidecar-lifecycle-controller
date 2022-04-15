@@ -1,11 +1,12 @@
 package main
 
 import (
-	"os"
+	"context"
+        "os"
 	"os/signal"
 	"syscall"
 
-	log "github.com/Sirupsen/logrus"
+	log "github.com/sirupsen/logrus"
 	api_v1 "k8s.io/api/core/v1"
 	meta_v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
@@ -43,6 +44,7 @@ func main() {
 	client := getKubernetesClient()
 
 	namespace := meta_v1.NamespaceAll
+        ctx := context.Background()
 
 	// create the informer so that we can not only list resources
 	// but also watch them for all pods in the default namespace
@@ -53,11 +55,11 @@ func main() {
 		&cache.ListWatch{
 			ListFunc: func(options meta_v1.ListOptions) (runtime.Object, error) {
 				// list all of the pods (core resource) in the deafult namespace
-				return client.CoreV1().Pods(namespace).List(options)
+				return client.CoreV1().Pods(namespace).List(ctx, options)
 			},
 			WatchFunc: func(options meta_v1.ListOptions) (watch.Interface, error) {
 				// watch all of the pods (core resource) in the default namespace
-				return client.CoreV1().Pods(namespace).Watch(options)
+				return client.CoreV1().Pods(namespace).Watch(ctx, options)
 			},
 		},
 		&api_v1.Pod{}, // the target type (Pod)

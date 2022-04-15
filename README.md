@@ -17,7 +17,7 @@ This is a response to https://github.com/kubernetes/kubernetes/issues/25908.
 kubectl apply -f manifest.yml
 ```
 
-1. Add the `nrmitchi.com/sidecars` annotation to your pods, with a comma-seperated list of sidecar container names.
+1. Add the `sidecar-lifecycle-controller/sidecars` annotation to your pods, with a comma-seperated list of sidecar container names.
 
 Example:
 
@@ -34,7 +34,7 @@ spec:
       template:
         metadata:
           annotations:
-            nrmitchi.com/sidecars: logging
+            sidecar-lifecycle-controller/sidecars: logging
         spec:
           restartPolicy: Never
           containers:

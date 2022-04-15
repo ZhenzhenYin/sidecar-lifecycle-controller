@@ -6,7 +6,7 @@ import (
 
 	"github.com/avast/retry-go"
 
-	log "github.com/Sirupsen/logrus"
+	log "github.com/sirupsen/logrus"
 	core_v1 "k8s.io/api/core/v1"
 
 	"k8s.io/client-go/tools/clientcmd"
@@ -82,7 +82,7 @@ func (t *SidecarShutdownHandler) ObjectCreated(obj interface{}) {
 	// assert the type to a Pod object to pull out relevant data
 	pod := obj.(*core_v1.Pod)
 
-	sidecarsString, exists := pod.Annotations["nrmitchi.com/sidecars"]
+	sidecarsString, exists := pod.Annotations["sidecar-lifecycle-controller/sidecars"]
 
 	if exists {
 		log.Debugf("    ResourceTrackable: true")
