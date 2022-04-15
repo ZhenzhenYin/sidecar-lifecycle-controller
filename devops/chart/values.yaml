@@ -1,0 +1,7 @@
+image:
+  repository: "$YOUR_REPO/sidecar-lifecycle-controller"
+  tag: "0.0.1"
+  pullPolicy: "Always"
+
+cpu: 200
+memory: 128

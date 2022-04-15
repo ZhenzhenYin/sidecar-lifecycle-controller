@@ -48,7 +48,7 @@ spec:
     spec:
       serviceAccountName: sidecar-job-controller
       containers:
-        - image: nrmitchi/k8s-controller-sidecars:latest
+        - image: $YOUR_REPO/sidecar-lifecycle-controller:0.0.1
           imagePullPolicy: Always
           name: sidecar-controller
           resources:

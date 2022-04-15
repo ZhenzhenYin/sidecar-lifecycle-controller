@@ -14,10 +14,10 @@ This is a response to https://github.com/kubernetes/kubernetes/issues/25908.
 1. Deploy the controller into your cluster
 
 ```sh
-kubectl apply -f manifest.yml
+./devops/sidecar-lifecycle-controller-deploy.sh 0.0.1 kube-system your-image-repo
 ```
 
-1. Add the `sidecar-lifecycle-controller/sidecars` annotation to your pods, with a comma-seperated list of sidecar container names.
+2. Add the `sidecar-lifecycle-controller/sidecars` annotation to your pods, with a comma-seperated list of sidecar container names.
 
 Example:
 
